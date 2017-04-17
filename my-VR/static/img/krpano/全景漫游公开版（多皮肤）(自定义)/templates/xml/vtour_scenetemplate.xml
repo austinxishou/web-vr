@@ -1,0 +1,19 @@
+﻿
+	<scene name="scene_[NAME]" title="[NAME]" onstart=""[THUMB][GPS][DEVICE]>
+
+
+		[VIEW]
+
+		[PREVIEW]
+
+		[IMAGE]
+
+		[HOTSPOTS]
+
+         
+
+          <info name="info0" html="[br]here is the pano infomations,--这儿填上全景图的相关介绍。" />
+      
+ 
+ 
+	</scene>

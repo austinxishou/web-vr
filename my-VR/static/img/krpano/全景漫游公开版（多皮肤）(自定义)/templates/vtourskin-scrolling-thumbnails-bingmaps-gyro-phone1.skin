@@ -1,0 +1,81 @@
+# Virtual Tour Skin
+# - Button Bar
+# - Scene+Pano Title
+# - Previous/Next Scene Buttons
+# - Show/Hide Skin Buttons
+# - Hotspots Style
+# - Scrolling Thumbnails
+# - Bingmaps Plugin
+# - Gyroscope Plugin
+# - Retina compatible
+# - Android compatible
+# - Different Mobile Layout
+# - Virtual Tour Editor compatible
+# krpano 1.0.8.15
+
+xmltemplate=xml/vtour.xml
+xmltemplate_scene=xml/vtour_scenetemplate.xml
+xmltemplate_view=xml/vtour_viewtemplate.xml
+xmltemplate_hotspot=xml/vtour_hotspottemplate.xml
+xmltemplate_plugin=xml/vtour_plugintemplate.xml
+xmltemplate_layer=xml/vtour_layertemplate.xml
+xmltemplate_style=xml/vtour_styletemplate.xml
+xmltemplate_info=xml/vtour_infotemplate.xml
+
+# xmltemplate_hotspot=xml/vtour_hotspottemplate2.xml
+xmltemplate_additional_file=xml/skin/vtourskin.xml
+xmltemplate_additional_file=xml/skin/context.xml
+xmltemplate_additional_file=xml/skin/sound.xml
+xmltemplate_additional_file=xml/skin/editor.xml
+xmltemplate_additional_file=xml/skin/nave.xml
+xmltemplate_additional_file=xml/mp3/sound0.mp3
+
+xmltemplate_additional_file=xml/skin/vtourskin.png
+xmltemplate_additional_file=xml/skin/vtourskin_thumbborder.png
+xmltemplate_additional_file=xml/skin/vtourskin_hotspot.png
+xmltemplate_additional_file=xml/skin/vtourskin_mapspot.png
+xmltemplate_additional_file=xml/skin/vtourskin_mapspotactive.png
+xmltemplate_additional_file=xml/skin/maps.xml
+xmltemplate_additional_file=xml/skin/map.jpg
+xmltemplate_additional_file=xml/skin/spot0.png
+xmltemplate_additional_file=xml/skin/spot0.png
+xmltemplate_additional_file=xml/skin/spot1.png
+xmltemplate_additional_file=xml/skin/spot2.png
+xmltemplate_additional_file=xml/skin/intro.png
+xmltemplate_additional_file=xml/skin/mapname.png
+xmltemplate_additional_file=xml/skin/logos.png
+xmltemplate_additional_file=xml/skin/logo.png
+xmltemplate_additional_file=xml/skin/help.png
+
+xmltemplate_additional_file=xml/hotspots/hotspot_ani_black_64x64x20.png
+xmltemplate_additional_file=xml/hotspots/hotspot_ani_white_64x64x20.png
+xmltemplate_additional_file=xml/hotspots/hotspot_ani_black.gif
+xmltemplate_additional_file=xml/hotspots/hotspot_ani_white.gif
+xmltemplate_additional_file=xml/hotspots/hotspot_ani_black_big.gif
+xmltemplate_additional_file=xml/hotspots/hotspot_ani_white_big.gif
+
+xmltemplate_additional_file=xml/hotspots/map.jpg
+xmltemplate_additional_file=xml/hotspots/mapname.png
+
+xmltemplate_additional_file=xml/plugins/scrollarea.swf
+xmltemplate_additional_file=xml/plugins/scrollarea.js
+xmltemplate_additional_file=xml/plugins/bingmaps.swf
+xmltemplate_additional_file=xml/plugins/bingmaps.js
+xmltemplate_additional_file=xml/plugins/bingmaps.license.xml
+xmltemplate_additional_file=xml/plugins/textfield.swf
+xmltemplate_additional_file=xml/plugins/gyro.js
+xmltemplate_additional_file=xml/plugins/dblclick.swf
+xmltemplate_additional_file=xml/plugins/dblclick.js
+xmltemplate_additional_file=xml/plugins/soundinterface.swf
+xmltemplate_additional_file=xml/plugins/soundinterface.js
+xmltemplate_additional_file=xml/plugins/snow.swf
+
+xmltemplate_additional_file=xml/plugins/editor.swf
+xmltemplate_additional_file=xml/plugins/combobox.swf
+xmltemplate_additional_file=xml/plugins/combobox.js
+xmltemplate_additional_file=xml/plugins/videoplayer.swf
+xmltemplate_additional_file=xml/plugins/videoplayer.js
+xmltemplate_additional_file=xml/plugins/radar.swf
+xmltemplate_additional_file=xml/plugins/radar.js
+
+

@@ -1,0 +1,225 @@
+﻿<krpano>
+	<!-- krpano 1.16 - Virtual Tour ComboBoxes Skin -->
+
+	<progress showload="none" showwait="none" />
+	
+	
+	<!-- Skin Hotspot Style (the hotspots  need a 'linkedscene' attribute to be clickable)-->
+	<style name="skin_hotspotstyle" url="%SWFPATH%/skin/vtourskin_hotspot.png" scale="0.5" edge="top" oy="0" onclick="if(linkedscene, tween(scale,0.25,0.5); tween(oy,-20,0.5); tween(alpha,0,0.5); looktohotspot(); loadscene(get(linkedscene),null,MERGE,BLEND(1)); plugin[skin_cb_scenes].selectiditem(get(linkedscene)); );" />
+
+
+	<!-- Skin Comboboxes: One for Scenes, One for Settings -->
+	<style name="skin_combobox" url="%SWFPATH%/plugins/combobox.swf" alturl="%SWFPATH%/plugins/combobox.js" native="false" />
+	
+	<plugin name="skin_cb_scenes"  keep="true" style="skin_combobox" align="rightbottom" x="10" y="15"  width="200" onloaded="skin_fillwithscenes();" rowcount="14" />
+	
+	<plugin name="skin_cb_settings"  keep="true" style="skin_combobox" align="leftbottom" x="10" y="15" width="160" rowcount="10">
+		<item name="settings" caption="视图设置" />
+		<item name="norm"     caption="正常视图"        onclick="skin_normal_projection();        selectiditem(settings);" />
+		<item name="archi"    caption="建筑视图" onclick="skin_architectural_projection(); selectiditem(settings);" />
+		<item name="fisheye"  caption="鱼眼视图"       onclick="skin_fisheye_projection();       selectiditem(settings);" devices="Flash" />
+	<!--	<item name="stereo"   caption="立体视图" onclick="skin_stereographic_projection(); selectiditem(settings);" devices="Flash" /> One for Settings -->
+		<item name="planet"   caption="小行星视图"            onclick="skin_littleplanet_projection();  selectiditem(settings);" devices="Flash" />
+		<item name="drag2d"   caption="拖动控制"   onclick="set(control.mousetype,drag2D); set(control.touchtype,drag2D); selectiditem(settings);" />
+		<item name="moveto"   caption="移动控制" onclick="set(control.mousetype,moveto); set(control.touchtype,moveto); selectiditem(settings);" />
+	</plugin>
+
+		     <style name="text"						url="%SWFPATH%/plugins/textfield.swf"					
+				children="false"							background="false"									border="false"								enabled="false"		/>	   	
+	<action name="skin_fillwithscenes">
+		addIdItem(settings, 场景选择,);
+		for(set(i,0), i LT scene.count, inc(i),
+		  txtadd(itemcall, 'loadscene(',get(scene[get(i)].name),',null,MERGE,BLEND(1));');
+		  addIdItem(get(scene[get(i)].name), get(scene[get(i)].title), get(itemcall));
+		);
+	</action>
+
+
+	<!-- Gyroscope -->
+	<plugin name="skin_gyro" url="%SWFPATH%/plugins/gyro.js" devices="HTML5" keep="true" enabled="false" friction="0" velastic="0" camroll="true" onavailable="skin_addgyrosetting();" />
+		
+	<action name="skin_addgyrosetting">
+		<!-- check if the settings combobox and the gyro plugin were loaded -->
+		set(ready,true);
+		ifnot(plugin[skin_cb_settings].loaded, set(ready,false));
+		ifnot(plugin[skin_gyro].loaded, set(ready,false));
+		if(ready,
+			if(plugin[skin_gyro].available,
+				<!-- plugins loaded and gyro is available = add gyro items --> 
+				plugin[skin_cb_settings].addItem('Enable Gyro', set(plugin[skin_gyro].enabled,true); plugin[skin_cb_settings].selectiditem(settings); );
+				plugin[skin_cb_settings].addItem('Disable Gyro', set(plugin[skin_gyro].enabled,false); tween(view.camroll,0); plugin[skin_cb_settings].selectiditem(settings); );
+			  );
+		  ,
+			<!-- try later again -->
+			delayedcall(0.1, skin_addgyrosetting());
+		  );
+	</action>
+
+
+	<!-- Projection Actions -->
+	
+	<action name="skin_normal_projection">
+		if(backup_fovmax, 
+			if(view.fov GT backup_fovmax, tween(view.fov,get(backup_fovmax),0.25,default,WAIT); );
+			copy(view.fovmax,backup_fovmax); 
+			delete(backup_fovmax); 
+		);
+		tween(view.fisheye, 0.0, 0.5, default, set(view.stereographic,false); );
+		tween(view.architectural, 0.0);
+		if(view.vlookat GT 80, tween(view.vlookat, 0); );
+	</action>
+	
+	<action name="skin_architectural_projection">
+		skin_normal_projection();
+		tween(view.architectural, 1.0);
+	</action>
+	
+	<action name="skin_fisheye_projection">
+		tween(view.architectural, 0.0);
+		if(view.stereographic == true, if(view.fisheye GT 0, tween(view.fisheye,0,0.25,default,WAIT); set(view.stereographic,false); ); );
+		ifnot(backup_fovmax, copy(backup_fovmax, view.fovmax); );
+		tween(view.fovmax, 179, 0.25);
+		tween(view.fisheye, 0.35);
+	</action>
+	
+	<action name="skin_stereographic_projection">
+		tween(view.architectural, 0.0);
+		if(view.stereographic == false, if(view.fisheye GT 0,  tween(view.fisheye,0,0.25,default,WAIT); ); );
+		set(view.stereographic,true); 
+		ifnot(backup_fovmax, copy(backup_fovmax, view.fovmax); );
+		tween(view.fovmax, 160, 0.25);
+		tween(view.fisheye, 1.0);
+	</action>
+	
+	<action name="skin_littleplanet_projection">
+		skin_stereographic_projection();
+		tween(view.vlookat, 90);
+		tween(view.fov, 150);
+	</action>
+
+<textstyle name="mapctrl" font="tahoma" backgroundcolor="0x000000" border="false" textcolor="0xffffff" alpha="0.50" blendmode="layer" effect="glow(0x000000,1.00,12,100);" edge="lefttop" textalign="left"
+		 xoffset="-80" yoffset="-7" fadetime="0.1" fadeintime="0.05" />
+	 	<style name="mapstyle"   keep="true" url="%SWFPATH%/skin/map_hotspot.png" align="lefttop"   edge="center" parent="map"  width="16" height="16"  onhover="showtext(get(scene[get(name)].title), mapText);"  zorder="11" onclick="maptoscene()" />
+	
+	<style name="mapstylevisited" edge="center" url="%SWFPATH%/skin/map_visited.png" align="lefttop" onhover="showtext(get(scene[get(name)].title), mapText);" zorder="11" onclick="maptoscene()" />
+	
+	<style name="share" width="26" url="%SWFPATH%/skin/sharePanel.png" height="26" y="9" align="lefttop" />
+	
+	<textstyle name="maptext" font="tahoma" backgroundcolor="0x000000" border="false" textcolor="0xffffff" alpha="0.50" blendmode="layer" effect="glow(0x000000,1.00,12,100);" edge="center" textalign="left" 
+		yoffset="-25" fadetime="0.1" fadeintime="0.05" />
+	
+	<style name="textstyle" scale="1.0" edge="top" url="%SWFPATH%/skin/btnInfo.png" onclick="setupHtml()" onhover="showtext('点击查看', worksText)" />
+
+	     
+	<action name="mapclose">
+		
+	
+		set(layer[btnCloseMap].visible, false);
+		fadeout(map, 0.0);
+		set(layer[btnOpenMap].visible, true);
+	</action>
+
+	<action name="mapopen">
+		set(layer[btnOpenMap].visible, false);
+		fadein(map, 0.65, 1.0);
+		set(layer[btnCloseMap].visible, true);
+	</action>
+
+	<action name="activatespot">
+		set(layer[map_active].parent, %1);
+		set(layer[map_active].visible, true);
+		set(layer[radar].visible, true);
+		set(layer[radar].heading, get(layer[%1].heading)));
+	</action>
+
+	<action name="maptoscene">
+		loadscene(get(name), null, MERGE,BLEND(1));
+		activatespot(get(name));
+	</action>
+
+     
+	 <!-- 功能 插件-->
+	
+	<plugin name="dblclick" keep="true" 
+	        url="%SWFPATH%/plugins/dblclick.swf" 
+	        alturl="%SWFPATH%/plugins/dblclick.js" 
+	        ondblclick="switch(fullscreen)"	        />
+
+	
+	<action name="fadein">
+		set(layer[%1].visible, true);
+		tween(layer[%1].alpha, %2, 0.5, default);
+		tween(layer[%1].scale, %3, 0.5, default);
+	</action>
+
+	<action name="fadeout">
+		tween(layer[%1].scale, %2, 0.5, default);
+		tween(layer[%1].alpha, 0.0, 0.5, default, set(layer[%1].visible, false); );
+	</action>
+
+	
+	
+	
+
+	<!-- events - fullscreen button change, set cursor on start -->
+	<events onxmlcomplete="action(autorotateright);"
+	        onenterfullscreen="set(plugin[cbfullscreen].visible,false); set(plugin[cbfullscreen2].visible,true);"
+	        onexitfullscreen ="set(plugin[cbfullscreen].visible,true);  set(plugin[cbfullscreen2].visible,false);"
+	        />
+
+	<!-- button showtext() style -->
+	<textstyle name="buttonstyle" font="宋体" fontsize="14" border="false" background="false" textcolor="0xFFFFFF" effect="glow(0x000000,0.7,4,2);dropshadow(2,45,0x000000,3,1);" xoffset="35" yoffset="-8" />
+
+
+	<!-- 小图用按钮 -->
+	
+	<layer name="skin_sc" type="container" keep="true" align="rightbottom" width="150" height="150" x="12" y="35" scalechildren="true" maskchildren="true" scale="1.3" bgcolor="0xff9900" bgalpha="0.0" >
+	
+	<plugin name="cbleft" keep="true" align="leftbottom" x="10" y="48" blendmode="screen" url="%SWFPATH%/circle-buttons.jpg" crop="0|41|30|28" onovercrop="0|148|30|28" ondowncrop="0|255|30|28" ondown="set(movevectorx,-0.07);"  onup="set(movevectorx,0);" onhover="showtext(向左移动,buttonstyle);" />
+	<plugin name="cbup" keep="true" align="leftbottom" x="50" y="86" blendmode="screen" url="%SWFPATH%/skin/circle-buttons.jpg" crop="40|0|30|31" onovercrop="40|107|30|31" ondowncrop="40|214|30|31" ondown="set(movevectory,-0.07);"  onup="set(movevectory,0);" onhover="showtext(向上移动,buttonstyle);" />
+	<plugin name="cbright" keep="true" align="leftbottom" x="89" y="48" blendmode="screen" url="%SWFPATH%/skin/circle-buttons.jpg" crop="79|41|30|28" onovercrop="79|148|30|28" ondowncrop="79|255|30|28" ondown="set(movevectorx,0.07);"  onup="set(movevectorx,0);" onhover="showtext(向右移动,buttonstyle);" />
+	<plugin name="cbdown" keep="true" align="leftbottom" x="50" y="9" blendmode="screen" url="%SWFPATH%/skin/circle-buttons.jpg" crop="40|79|30|29" onovercrop="40|186|30|29" ondowncrop="40|293|30|29" ondown="set(movevectory,0.07);"  onup="set(movevectory,0);" onhover="showtext(向下移动,buttonstyle);" />
+	<plugin name="cbplayleft" keep="true" align="leftbottom" x="40" y="48" blendmode="screen" url="%SWFPATH%/skin/circle-buttons.jpg" crop="30|41|16|28" onovercrop="30|148|16|28" ondowncrop="30|255|16|28" ondown="action(autorotateleft)" onhover="showtext(自动左旋,buttonstyle);" />
+	<plugin name="cbplayleft2" keep="true" align="leftbottom" x="40" y="48" blendmode="screen" url="%SWFPATH%/skin/circle-buttons.jpg" crop="30|148|16|28" onovercrop="30|41|16|28" ondowncrop="30|255|16|28" ondown="action(autorotatepause)" onhover="showtext(停止左旋,buttonstyle);" visible="false" />
+	<plugin name="cbplaypause" keep="true" align="leftbottom" x="56" y="48" blendmode="screen" url="%SWFPATH%/skin/circle-buttons.jpg" crop="46|41|17|28" onovercrop="46|148|17|28" ondowncrop="46|255|17|28" ondown="action(autorotatepause)" onhover="showtext(暂停旋转,buttonstyle);" />
+	<plugin name="cbplayright" keep="true" align="leftbottom" x="73" y="48" blendmode="screen" url="%SWFPATH%/skin/circle-buttons.jpg" crop="63|41|16|28" onovercrop="63|148|16|28" ondowncrop="63|255|16|28" ondown="action(autorotateright)" onhover="showtext(自动右旋,buttonstyle);" />
+	<plugin name="cbplayright2" keep="true" align="leftbottom" x="73" y="48" blendmode="screen" url="%SWFPATH%/skin/circle-buttons.jpg" crop="63|148|16|28" onovercrop="63|41|16|28" ondowncrop="63|255|16|28" ondown="action(autorotatepause)" onhover="showtext(暂停旋转,buttonstyle);" visible="false" />
+	
+	<plugin name="cbblank1" keep="true" align="leftbottom" x="50" y="76" blendmode="screen" url="%SWFPATH%/skin/circle-buttons.jpg" crop="40|31|30|10" />
+	<plugin name="cbblank2" keep="true" align="leftbottom" x="50" y="38" blendmode="screen" url="%SWFPATH%/skin/circle-buttons.jpg" crop="40|69|30|10" />
+	
+	<plugin name="cbzoomin" keep="true" align="leftbottom" x="10" y="76" blendmode="screen" url="%SWFPATH%/skin/circle-buttons.jpg" crop="0|0|40|41" onovercrop="0|107|40|41" ondowncrop="0|107|40|41"  ondown="set(movevectorz,-0.2);"  onup="set(movevectorz,0);" onhover="showtext(按住放大,buttonstyle);" />
+	<plugin name="cbzoomout" keep="true" align="leftbottom" x="80" y="76" blendmode="screen" url="%SWFPATH%/skin/circle-buttons.jpg" crop="70|0|40|41" onovercrop="70|107|40|41" ondowncrop="70|107|40|41"  ondown="set(movevectorz,+0.2);"  onup="set(movevectorz,0);" onhover="showtext(按住缩小,buttonstyle);" />
+	<plugin name="cbhome" keep="true" align="leftbottom" x="10" y="7" blendmode="screen" url="%SWFPATH%/skin/circle-buttons.jpg" crop="0|69|40|41" onovercrop="0|176|40|41" ondowncrop="0|176|40|41" onclick="lookto(0,0,100);" onhover="showtext(初始场景, buttonstyle);" />
+	<plugin name="cbfullscreen" keep="true" align="leftbottom" x="80" y="7" blendmode="screen" url="%SWFPATH%/skin/circle-buttons.jpg" crop="70|69|40|41" onovercrop="70|176|40|41" ondowncrop="70|176|40|41" onclick="set(fullscreen,true);" onhover="showtext(全屏显示, buttonstyle);"  visible="true" />
+	<plugin name="cbfullscreen2" keep="true" align="leftbottom" x="80" y="7" blendmode="screen" url="%SWFPATH%/skin/circle-buttons.jpg" crop="70|176|40|41" onovercrop="70|69|40|41" ondowncrop="70|176|40|41" onclick="set(fullscreen,false);" onhover="showtext(退出全屏,buttonstyle);" visible="false" />
+</layer>
+	<!-- 小图用按钮 end -->
+
+
+	<action name="autorotateleft">
+		action(autorotatepause);
+		set(autorotate.speed,-5);
+		set(autorotate.accel,7);
+		set(autorotate.enabled,true);
+		set(plugin[cbplayleft].visible,false);
+		set(plugin[cbplayleft2].visible,true);
+	</action>
+	<action name="autorotateright">
+		action(autorotatepause);
+		set(autorotate.speed,+5);
+		set(autorotate.accel,7);
+		set(autorotate.enabled,true);
+		set(plugin[cbplayright].visible,false);
+		set(plugin[cbplayright2].visible,true);
+	</action>
+	<action name="autorotatepause">
+		set(autorotate.speed,0);
+		set(autorotate.enabled,false);
+		set(plugin[cbplayleft].visible,true);
+		set(plugin[cbplayleft2].visible,false);
+		set(plugin[cbplayright].visible,true);
+		set(plugin[cbplayright2].visible,false);
+	</action>
+	
+</krpano>

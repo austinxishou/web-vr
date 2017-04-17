@@ -1,0 +1,9 @@
+﻿<krpano version="1.0.8.15">
+	
+	<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="1.0" fovmin="50" fovmax="120" [VIEWLIMITS]/>
+
+	[PREVIEW]
+
+	[IMAGE]
+
+</krpano>

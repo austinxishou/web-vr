@@ -1,0 +1,40 @@
+﻿<krpano version="1.0.8.15" title="Virtual Tour" onstart="startup();">
+
+
+
+<!--皮肤在这儿改，允许的皮肤：skin0,skin1,skin2,skin3,skin4,skin5,skin6,skin7,共是八个皮肤 -->
+	<include url="skin0.xml" />
+  
+	<!-- 这是自动旋转，可以进行设置 -->
+<autorotate enabled="True" waittime="2" accel="1" speed="4" horizon="0" tofov="off" />
+ <plugin name="mulimage" url="%SWFPATH%/plugins/multitouch.swf"  keep="true" devices="flash" />					
+
+	<!-- 片头介绍，如果你需要，改为url="%SWFPATH%/skin/intro.jpg" -->
+ <plugin name="introimage" url="" keep="true" align="center" height="100%" width="100%" onclick="hideintroimage();" onloaded="autohideintroimage();"/>				
+ 	
+	<!-- 项部皮肤，如果你需要，改为url="%SWFPATH%/skin/topimg.jpg" -->
+ <plugin name="topimg" url="" keep="true" align="top" height="60" width="100%" x="0" y="0" enable="false" />				
+ 	
+	<!-- 底部皮肤，如果你需要，改为url="%SWFPATH%/skin/bottomimg.jpg" -->
+ <plugin name="bottomimg" url="" keep="true" align="bottom" height="20" width="100%" x="0" y="0" enable="false" />		
+ 			
+		<!-- 公司logo，如果你需要，改为url="%SWFPATH%/skin/logo.png" -->
+ <plugin name="mylogo" url="%SWFPATH%/skin/logo.png" keep="true" align="LEFTtop" height="100" width="180" x="15" y="15" enable="true"  alpha="0.7" onclick="" />		
+ 		
+	<!-- 补地补丁，如果你需要，改为url="%SWFPATH%/skin/roundlogo.png" -->
+<hotspot name="nadirlogo"   url=""    ath="0"    atv="90"     distorted="true"     scale="1.0"   rotate="0.0"         />
+
+	
+
+	<!-- set optional skin logo url -->
+	<layer name="skin_logo" url="" scale="0.25" opened_onclick="openurl('...',_blank);" />
+
+
+	<action name="startup">
+		if(startscene === null, copy(startscene,scene[0].name));
+		loadscene(get(startscene), null, MERGE);
+	</action>
+
+	[SCENES]
+
+</krpano>

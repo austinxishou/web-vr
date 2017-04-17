@@ -1,0 +1,133 @@
+﻿ <krpano>
+ <!--************** KrPano plugins and datas ***************************************************-->
+    <plugin name="data" firstPanoHasBeenPlayed="false" soundOn="true" keep="true"/>
+    <!--************** Open the first pano ************************************************
+   -->
+  
+
+   <plugin name="soundinterface" preload="true" url="%FIRSTXML%/plugins/soundinterface.swf" 
+    	alturl="%FIRSTXML%/plugins/soundinterface.js" keep="true"/>
+  <action name="playsoundaction">
+		set(plugin[data].soundOn, true);
+		playpanosounds(forcesounds);
+	</action>
+    <action name="stopsoundaction">
+		set(plugin[data].soundOn, false);
+		stoppanosounds();
+	</action>
+	
+	 <events onloadcomplete="onloadcompleteaction();"/>
+    <action name="onloadcompleteaction">
+		if(plugin[data].soundOn==false,stoppanosounds(),playpanosounds());
+	</action>
+    <action name="playpanosounds">
+		playbackgroundsound(%BASEDIR%/mp3/sound0.mp3|%BASEDIR%/mp3/sound0.ogg,0,%1);
+	</action>
+    <action name="stoppanosounds">
+		stopbackgroundsound();
+	</action>
+	
+	
+	<action name="switchsounds">
+     	switch(mys,playpanos0,playpanos1,playpanos2);
+      mys();
+	</action>
+	
+    <action name="stoppanosounds">
+		stopallsounds();
+	</action>
+    <action name="closepanoobjects">
+	</action>
+	
+	
+	 <action name="playpanos0">
+	 	stopallsounds();
+		playsound(s1,%BASEDIR%/mp3/sound0.mp3|%BASEDIR%/mp3/sound0.ogg,0,%1);
+		set(onclick,playpanos1)
+	</action>
+	
+	 <action name="playpanos1">
+	 	stopallsounds();
+		playsound(s2,%BASEDIR%/mp3/sound1.mp3|%BASEDIR%/mp3/sound1.ogg,0,%1);
+				set(onclick,playpanos2)
+	</action>
+	
+	 <action name="playpanos2">
+	 	stopallsounds();
+		playsound(s3,%BASEDIR%/mp3/sound2.mp3|%BASEDIR%/mp3/sound2.ogg,0,%1);
+				set(onclick,playpanos0)
+
+	</action>
+
+
+ <!--************** Background sound ***********************************************************-->
+    <action name="playbackgroundsound">
+		if(%1 == none,
+			stopallsounds();
+			set(plugin[soundinterface].background,%1);
+			,
+			if(plugin[soundinterface].background == %1,
+				if (%3 == forcesounds,
+					stopallsounds();playsound(backgroundsound,%1,%2);
+				)
+				,
+				stopallsounds();playsound(backgroundsound,%1,%2);
+				set(plugin[soundinterface].background,%1);
+			)
+		);
+	</action>
+   
+    <action name="stopbackgroundsound">
+		stopsound(backgroundsound);
+	</action>
+
+
+
+
+	
+		<!-- hotspot style predefines - black hotspot -->	
+	<style name="hotspot_ani_black"	
+	       url="%BASEDIR%/hotspots/hotspot_ani_black_64x64x20.png"	
+	       crop="0|0|64|64"	
+	       framewidth="64" frameheight="64" frame="0" lastframe="19"	
+	       onloaded="hotspot_animate();"	
+	       />	
+		
+	<!-- hotspot style predefines - white hotspot -->	
+	<style name="hotspot_ani_white"	
+	       url="%BASEDIR%/hotspots/hotspot_ani_white_64x64x20.png"	
+	       crop="0|0|64|64"	
+	       framewidth="64" frameheight="64" frame="0" lastframe="19"	
+	       onloaded="hotspot_animate();"	
+	       />	
+		
+		<style name="skin_hotspotstyle"	
+	       url="%BASEDIR%/hotspots/hotspot_ani_white_64x64x20.png"	
+	       crop="0|0|64|64"	
+	       framewidth="64" frameheight="64" frame="0" lastframe="19"	
+	       onloaded="hotspot_animate();"
+	       scale="0.5" edge="top" oy="0"
+	       distorted="true"
+	       onclick="if(linkedscene, tween(scale,0.25,0.5); tween(oy,-20,0.5); tween(alpha,0,0.5); looktohotspot(); loadscene(get(linkedscene),null,MERGE,BLEND(1)); skin_updatescroll(); );"
+	       onhover="if(skin_settings.tooltips_hotspots, if(linkedscene, showtext(get(scene[get(linkedscene)].title),SKIN_TOOLTIPS)) );"
+	       	
+	       />	
+		
+		<!-- hotspot style predefines - white hotspot -->	
+	<style name="hotspot_ani_my"	
+	       url="%BASEDIR%/hotspots/hotspot_ani_my.png"	
+	       crop="0|0|64|64"	
+	       framewidth="64" frameheight="64" frame="0" lastframe="16"	
+	       onloaded="hotspot_animate();"	
+	       />	
+	<!-- hotspot animation action -->	
+	<action name="hotspot_animate">	
+		inc(frame,1,get(lastframe),0);
+		mul(ypos,frame,frameheight);
+		txtadd(crop,'0|',get(ypos),'|',get(framewidth),'|',get(frameheight));
+		delayedcall(0.03, if(loaded, hotspot_animate() ) );
+	</action>	
+
+	
+	
+	 </krpano>

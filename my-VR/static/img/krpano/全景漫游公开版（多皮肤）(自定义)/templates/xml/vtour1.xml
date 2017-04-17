@@ -1,0 +1,37 @@
+<krpano version="1.0.8.15" title="Virtual Tour" onstart="startup();">
+
+	<include url="skin/vtourskin.xml" />
+       <include url="skin/context.xml" />
+       
+       
+       	<!-- set skin settings: bingmaps? gyro? 
+         <include url="skin/context.xml" />  
+         <include url="skin/context.xml" />
+         <include url="skin/context.xml" />
+         <include url="skin/context.xml" />
+         <include url="skin/context.xml" />
+         <include url="skin/context.xml" />
+         <include url="skin/context.xml" />
+         <include url="skin/context.xml" />
+         -->
+       
+       
+       
+       
+	<!-- set skin settings: bingmaps? gyro? -->
+	<skin_settings bingmaps="[HAVEGPS]" bingmaps_key="ArbnaPugs4xPInXNo8EI3hVvmG8BntY4MqYt9FW3XYYvqvPTdi5tTzJXwpeDwyN3"
+	               gyro="true"
+	               />
+
+	<!-- set optional skin logo url -->
+	<layer name="skin_logo" url="skin/logos.png" scale="0.5" opened_onclick="openurl('http://www.360sc.com.cn',_blank);" />
+
+
+	<action name="startup">
+		if(startscene === null, copy(startscene,scene[0].name));
+		loadscene(get(startscene), null, MERGE);
+	</action>
+
+	[SCENES]
+
+</krpano>

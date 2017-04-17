@@ -1,0 +1,190 @@
+﻿<krpano version="1.0.8.15" title="Virtual Tour" onstart="startup();">
+
+
+
+<!--皮肤在这儿改，允许的皮肤：skin0,skin1,skin2,skin3,skin4,skin5,skin6,skin7,共是八个皮肤 -->
+	<include url="skin0.xml" />
+  
+	<!-- 这是自动旋转，可以进行设置 -->
+<autorotate enabled="True" waittime="2" accel="1" speed="4" horizon="0" tofov="off" />
+ <plugin name="mulimage" url="%SWFPATH%/plugins/multitouch.swf"  keep="true" devices="flash" />					
+
+	<!-- 片头介绍，如果你需要，改为url="%SWFPATH%/skin/intro.jpg" -->
+ <plugin name="introimage" url="" keep="true" align="center" height="100%" width="100%" onclick="hideintroimage();" onloaded="autohideintroimage();"/>				
+ 	
+	<!-- 项部皮肤，如果你需要，改为url="%SWFPATH%/skin/topimg.jpg" -->
+ <plugin name="topimg" url="" keep="true" align="top" height="60" width="100%" x="0" y="0" enable="false" />				
+ 	
+	<!-- 底部皮肤，如果你需要，改为url="%SWFPATH%/skin/bottomimg.jpg" -->
+ <plugin name="bottomimg" url="" keep="true" align="bottom" height="20" width="100%" x="0" y="0" enable="false" />		
+ 			
+		<!-- 公司logo，如果你需要，改为url="%SWFPATH%/skin/logo.png" -->
+ <plugin name="mylogo" url="%SWFPATH%/skin/logo.png" keep="true" align="LEFTtop" height="100" width="180" x="15" y="15" enable="true"  alpha="0.7" onclick="" />		
+ 		
+	<!-- 补地补丁，如果你需要，改为url="%SWFPATH%/skin/roundlogo.png" -->
+<hotspot name="nadirlogo"   url=""    ath="0"    atv="90"     distorted="true"     scale="1.0"   rotate="0.0"         />
+
+	
+
+	<!-- set optional skin logo url -->
+	<layer name="skin_logo" url="" scale="0.25" opened_onclick="openurl('...',_blank);" />
+
+
+	<action name="startup">
+		if(startscene === null, copy(startscene,scene[0].name));
+		loadscene(get(startscene), null, MERGE);
+	</action>
+
+	﻿
+	<scene name="scene_jiudingshan (2)" title="jiudingshan (2)" onstart="" thumburl="panos/jiudingshan_(2).tiles/thumb.jpg" lat="31.49036600" lng="103.76895100" heading="0.0">
+
+
+		﻿<view hlookat="0" vlookat="0" fovtype="MFOV" fov="90" maxpixelzoom="2.0" fovmin="10" fovmax="100" limitview="auto" />
+
+		<preview url="panos/jiudingshan_(2).tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" progressive="false">
+			<level tiledimagewidth="1592" tiledimageheight="1592">
+				<cube url="panos/jiudingshan_(2).tiles/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="796" tiledimageheight="796">
+				<cube url="panos/jiudingshan_(2).tiles/l1_%s_%v_%h.jpg" />
+			</level>
+			<mobile>
+				<cube url="panos/jiudingshan_(2).tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		﻿<!-- place your scene hotspots here -->
+
+	<hotspot name="spot1" style="hotspot_ani_black" 
+
+		         ath="0"
+		         atv="0"
+	
+	         zoom="false"
+		
+         onclick="looktohotspot(get(name));
+ skin_nextscene(-1);"	         />
+	
+
+<hotspot name="spot2" style="hotspot_ani_white" 
+
+		         ath="100"
+		         atv="0"
+	
+	         zoom="false"
+		
+         onclick="looktohotspot(get(name));
+skin_nextscene(+1);"	         />
+		
+
+         
+
+          <info name="info0" html="[br]here is the pano infomations,--这儿填上全景图的相关介绍。" />
+      
+ 
+ 
+	</scene>
+﻿
+	<scene name="scene_jiudingshan (2).preview" title="jiudingshan (2).preview" onstart="" thumburl="panos/jiudingshan_(2)_preview.tiles/thumb.jpg" lat="" lng="" heading="">
+
+
+		﻿<view hlookat="0" vlookat="0" fovtype="MFOV" fov="90" maxpixelzoom="2.0" fovmin="10" fovmax="100" limitview="auto" />
+
+		<preview url="panos/jiudingshan_(2)_preview.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" progressive="false">
+			<level tiledimagewidth="326" tiledimageheight="326">
+				<cube url="panos/jiudingshan_(2)_preview.tiles/l1_%s_%v_%h.jpg" />
+			</level>
+			<mobile>
+				<cube url="panos/jiudingshan_(2)_preview.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		﻿<!-- place your scene hotspots here -->
+
+	<hotspot name="spot1" style="hotspot_ani_black" 
+
+		         ath="0"
+		         atv="0"
+	
+	         zoom="false"
+		
+         onclick="looktohotspot(get(name));
+ skin_nextscene(-1);"	         />
+	
+
+<hotspot name="spot2" style="hotspot_ani_white" 
+
+		         ath="100"
+		         atv="0"
+	
+	         zoom="false"
+		
+         onclick="looktohotspot(get(name));
+skin_nextscene(+1);"	         />
+		
+
+         
+
+          <info name="info0" html="[br]here is the pano infomations,--这儿填上全景图的相关介绍。" />
+      
+ 
+ 
+	</scene>
+﻿
+	<scene name="scene_jiudingshan (3)" title="jiudingshan (3)" onstart="" thumburl="panos/jiudingshan_(3).tiles/thumb.jpg" lat="31.51229500" lng="103.76300000" heading="0.0">
+
+
+		﻿<view hlookat="0" vlookat="0" fovtype="MFOV" fov="90" maxpixelzoom="2.0" fovmin="10" fovmax="100" limitview="auto" />
+
+		<preview url="panos/jiudingshan_(3).tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" progressive="false">
+			<level tiledimagewidth="1592" tiledimageheight="1592">
+				<cube url="panos/jiudingshan_(3).tiles/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="796" tiledimageheight="796">
+				<cube url="panos/jiudingshan_(3).tiles/l1_%s_%v_%h.jpg" />
+			</level>
+			<mobile>
+				<cube url="panos/jiudingshan_(3).tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		﻿<!-- place your scene hotspots here -->
+
+	<hotspot name="spot1" style="hotspot_ani_black" 
+
+		         ath="0"
+		         atv="0"
+	
+	         zoom="false"
+		
+         onclick="looktohotspot(get(name));
+ skin_nextscene(-1);"	         />
+	
+
+<hotspot name="spot2" style="hotspot_ani_white" 
+
+		         ath="100"
+		         atv="0"
+	
+	         zoom="false"
+		
+         onclick="looktohotspot(get(name));
+skin_nextscene(+1);"	         />
+		
+
+         
+
+          <info name="info0" html="[br]here is the pano infomations,--这儿填上全景图的相关介绍。" />
+      
+ 
+ 
+	</scene>
+
+
+</krpano>

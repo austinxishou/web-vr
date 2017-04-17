@@ -1,0 +1,196 @@
+{
+	"version": "1.0.0",
+	"author": "dxl",
+	"config": {
+		"href": "http://rusys.admin.ct108.org:1505",
+		"host": "rusys.admin.ct108.org",
+		"port": 1505,
+		"debug": false
+	},
+	"dataList": [
+		{
+		    "url": "/UserTickets/GetLeftNum",
+		    "type": "get",
+		    "data": {
+		        "Status": true,
+		        "Code": 0,
+		        "Message": "Message",
+		        "Data": 808
+		    }
+		}, {
+		    "url": "/UserTickets/MyTicketsRecord",
+		    "type": "get",
+		    "data": {
+		        "Status": true,
+		        "Code": 0,
+		        "Message": "Message",
+		        "Data": {
+				    "LogList": [
+				        {
+				            "LogCreateTime": "2016-07-13T12:01:45.053",
+				            "OperateNumber": 1,
+				            "OperateType": 2,
+				            "Descript": "兑换同城游银子一万两"
+				        }, {
+				            "LogCreateTime": "2016-07-13T12:01:21.693",
+				            "OperateNumber": 1,
+				            "OperateType": 2,
+				            "Descript": "兑换同城游银子二万两"
+				        }, {
+				            "LogCreateTime": "2016-07-13T12:01:21.693",
+				            "OperateNumber": 1,
+				            "OperateType": 2,
+				            "Descript": "兑换同城游银子三万两"
+				        }, {
+				            "LogCreateTime": "2016-07-13T12:01:21.693",
+				            "OperateNumber": 1,
+				            "OperateType": 2,
+				            "Descript": "兑换同城游银子四万两"
+				        }, {
+				            "LogCreateTime": "2016-07-13T12:01:21.693",
+				            "OperateNumber": 1,
+				            "OperateType": 2,
+				            "Descript": "兑换同城游银子五万两"
+				        }
+				    ],
+				    "RecordCount": 5,
+				    "PageSize": 20
+				}
+		    }
+		}, {
+		    "url": "/Activity/ExchangeMobileBill",
+		    "type": "post",
+		    "data": {
+		        "Status": true,
+		        "Code": 0,
+		        "Message": "话费兑换成功",
+		        "Data": null
+		    }
+		}, {
+		    "url": "/Activity/ExchangeRealItem",
+		    "type": "post",
+		    "data": {
+		        "Status": true,
+		        "Code": 0,
+		        "Message": "实物兑换成功，您的包裹已快马加鞭~",
+		        "Data": null
+		    }
+		}, {
+		    "url": "/Activity/ExchangeProp",
+		    "type": "post",
+		    "data": {
+		        "Status": true,
+		        "Code": 0,
+		        "Message": "道具兑换成功，3~5分钟内将到达您的账号",
+		        "Data": null
+		    }
+		}, {
+		    "url": "/ActivityItem/Detail",
+		    "type": "get",
+		    "data": {
+		        "Status": true,
+		        "Code": 0,
+		        "Message": "Message",
+		        "Data": {
+		        	"PrizeName": "美的压力锅",
+			        "Price": 345,
+			        "Descript": "美的压力锅美的压力锅美的压力锅美的压力锅美的压力锅美的压力锅美的压力锅",
+			        "ImageUrl": "xxxxxxxxx",
+			        "ItemPrefixType": "HF"
+		        }
+		    }
+		}, {
+		    "url": "/Activity/GetActivityItemList",
+		    "type": "get",
+		    "data": {
+		        "Status": true,
+		        "Code": 0,
+		        "Message": "Message",
+		        "Data": [
+		            {
+		                "PrizeID": 1,
+		                "PrizeName": "京东e卡10元",
+		                "ImageUrl": "http://shopimg.ct108.net/Goods/201110200925202753.gif",
+		                "Price": 20000
+		            }, {
+		                "PrizeID": 2,
+		                "PrizeName": "京东e卡20元",
+		                "ImageUrl": "http://shopimg.ct108.net/Goods/201110200919305799.gif",
+		                "Price": 10000
+		            }, {
+		                "PrizeID": 3,
+		                "PrizeName": "京东e卡30元",
+		                "ImageUrl": "http://shopimg.ct108.net/Goods/201110201055145578.gif",
+		                "Price": 5000
+		            }, {
+		                "PrizeID": 4,
+		                "PrizeName": "40元话费直充",
+		                "ImageUrl": "http://shopimg.ct108.net/Goods/201110191952525840.gif",
+		                "Price": 123
+		            }, {
+		                "PrizeID": 5,
+		                "PrizeName": "京东e卡50元",
+		                "ImageUrl": "http://hz.tcy365.com/game/pic/hzmj_108.png",
+		                "Price": 20000
+		            }, {
+		                "PrizeID": 6,
+		                "PrizeName": "京东e卡60元",
+		                "ImageUrl": "http://img.yaodou.com/game/jyjh/2016012217012.png",
+		                "Price": 10000
+		            }, {
+		                "PrizeID": 7,
+		                "PrizeName": "京东e卡70元",
+		                "ImageUrl": "http://hz.tcy365.com/game/pic/qzsk_108.png",
+		                "Price": 5000
+		            }, {
+		                "PrizeID": 8,
+		                "PrizeName": "80元话费直充",
+		                "ImageUrl": "http://img.yaodou.com/game/xxd2/2016053013472.png",
+		                "Price": 123
+		            }
+		        ]
+		    }
+		}, {
+		    "url": "/Activity/GetNewExchangeRecord",
+		    "type": "get",
+		    "data": {
+		        "Status": true,
+		        "Code": 0,
+		        "Message": "Message",
+		        "Data": [
+		        	{
+					    "UserName": "1111",
+					    "PrizeName": "30元话费"
+					}, {
+					    "UserName": "2222",
+					    "PrizeName": "30元话费"
+					}, {
+					    "UserName": "3333",
+					    "PrizeName": "京东e卡50元"
+					}, {
+					    "UserName": "4444",
+					    "PrizeName": "京东e卡200元"
+					}, {
+					    "UserName": "5555",
+					    "PrizeName": "30元话费"
+					}, {
+					    "UserName": "6666",
+					    "PrizeName": "京东e卡50元"
+					}, {
+					    "UserName": "7777",
+					    "PrizeName": "30元宝"
+					}, {
+					    "UserName": "8888",
+					    "PrizeName": "30元话费"
+					}, {
+					    "UserName": "9999",
+					    "PrizeName": "500两银子"
+					}, {
+					    "UserName": "0000",
+					    "PrizeName": "50元红包"
+					}
+		        ]
+		    }
+		}
+	]
+}

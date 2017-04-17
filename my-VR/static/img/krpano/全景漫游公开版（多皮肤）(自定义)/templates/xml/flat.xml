@@ -1,0 +1,11 @@
+﻿<krpano version="1.0.8.15">
+
+	<include url="skin/flatskin.xml" devices="desktop" />
+
+	<view fovtype="HFOV" limitview="fullrange" hlookat="0" vlookat="0" maxpixelzoom="1.0" />
+
+	[PREVIEW]
+
+	[IMAGE]
+
+</krpano>

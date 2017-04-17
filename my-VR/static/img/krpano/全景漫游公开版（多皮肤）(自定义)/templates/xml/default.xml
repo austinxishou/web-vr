@@ -1,0 +1,15 @@
+﻿<krpano version="1.0.8.15">
+	
+	<include url="skin/defaultskin.xml" />
+
+  <include url="skin/context.xml" />
+
+<include url="skin/editor.xml" /> 
+		<!-- controlʲô buttons -->
+	<view hlookat="0" vlookat="0" maxpixelzoom="1.0" />
+
+	[PREVIEW]
+
+	[IMAGE]
+
+</krpano>

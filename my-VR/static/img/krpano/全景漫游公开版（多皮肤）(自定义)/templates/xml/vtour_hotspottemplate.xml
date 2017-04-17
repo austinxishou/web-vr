@@ -1,0 +1,23 @@
+﻿<!-- place your scene hotspots here -->
+
+	<hotspot name="spot1" style="hotspot_ani_black" 
+
+		         ath="0"
+		         atv="0"
+	
+	         zoom="false"
+		
+         onclick="looktohotspot(get(name));
+ skin_nextscene(-1);"	         />
+	
+
+<hotspot name="spot2" style="hotspot_ani_white" 
+
+		         ath="100"
+		         atv="0"
+	
+	         zoom="false"
+		
+         onclick="looktohotspot(get(name));
+skin_nextscene(+1);"	         />
+		
